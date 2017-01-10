@@ -1,23 +1,23 @@
 #include "gui3ds.h"
 
-void	draw_button_texture(s_button *button)
+void	gui3ds_draw_button_texture(s_button *button)
 {
 	sf2d_draw_texture(button->texture_button, button->x1, button->y1);
 }
 
-void	draw_button_color(s_button *button)
+void	gui3ds_draw_button_color(s_button *button)
 {
 	sf2d_draw_rectangle(button->x1, button->y1, button->width, button->height, button->color);
 }
 
-static void	draw_hitbox_button(u16 x1, u16 y1, u16 width, u16 height)
+static void	gui3ds_draw_hitbox_button(u16 x1, u16 y1, u16 width, u16 height)
 {
 	sf2d_draw_rectangle(x1, y1, width, height, RGBA8(255, 0, 0, 50));
 }
 
-bool	touch_button_hitbox(s_button *button, touchPosition *touch, u32 kDown)
+bool	gui3ds_touch_button_hitbox(s_button *button, touchPosition *touch, u32 kDown)
 {
-	draw_hitbox_button(button->x1, button->y1, button->width, button->height);
+	gui3ds_draw_hitbox_button(button->x1, button->y1, button->width, button->height);
 	if (kDown & KEY_TOUCH)
 	{
 		if (touch->px >= button->x1 && touch->px <= (button->x1 + button->width) &&
@@ -27,7 +27,7 @@ bool	touch_button_hitbox(s_button *button, touchPosition *touch, u32 kDown)
 	return (false);
 }
 
-bool	touch_button(s_button *button, touchPosition *touch, u32 kDown)
+bool	gui3ds_touch_button(s_button *button, touchPosition *touch, u32 kDown)
 {
 	if (kDown & KEY_TOUCH)
 	{
@@ -38,7 +38,7 @@ bool	touch_button(s_button *button, touchPosition *touch, u32 kDown)
 	return (false);
 }
 
-void	init_button_texture(s_button *button, sf2d_texture *texture_button, u16 x1, u16 y1)
+void	gui3ds_init_button_texture(s_button *button, sf2d_texture *texture_button, u16 x1, u16 y1)
 {
 	button->texture_button = texture_button;
 	button->x1 = x1;
@@ -47,7 +47,7 @@ void	init_button_texture(s_button *button, sf2d_texture *texture_button, u16 x1,
 	button->height = texture_button->height;
 }
 
-void	init_button_color(u16 x1, u16 y1, u16 width, u16 height, s_button *button, u32 color)
+void	gui3ds_init_button_color(u16 x1, u16 y1, u16 width, u16 height, s_button *button, u32 color)
 {
 	button->color = color;
 	button->x1 = x1;

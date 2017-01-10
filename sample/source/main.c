@@ -15,8 +15,8 @@ int	main()
 	touchPosition	touch;
 	u32				kDown;
 
-	init_button_texture(&button_exit, tex_button, 90, 190);
-	init_button_color(90, 20, 50, 20, &button, RGBA8(0, 255, 100, 255));
+	gui3ds_init_button_texture(&button_exit, tex_button, 90, 190);
+	gui3ds_init_button_color(90, 20, 50, 20, &button, RGBA8(0, 255, 100, 255));
 
 	while (aptMainLoop())
 	{
@@ -24,12 +24,12 @@ int	main()
 		hidTouchRead(&touch);
 		kDown = hidKeysDown();
 		sf2d_start_frame(GFX_BOTTOM, GFX_LEFT);
-			draw_button_texture(&button_exit);
-			draw_button_color(&button);
+			gui3ds_draw_button_texture(&button_exit);
+			gui3ds_draw_button_color(&button);
 		sf2d_end_frame();
-		if (touch_button(&button_exit, &touch, kDown) == true)
+		if (gui3ds_touch_button(&button_exit, &touch, kDown) == true)
 			break ;
-		if (touch_button(&button, &touch, kDown) == true)
+		if (gui3ds_touch_button(&button, &touch, kDown) == true)
 			break ;
 		sf2d_swapbuffers();
 	}
